@@ -11,17 +11,18 @@
 
 ## API
 ### [GET] /amida
-- Request
-    ---JSON
-    {
-        "Name":[String],  // メンバー名配列（必須）
-        "NumberInGroup":int  // １グループの人数を固定にする場合指定（任意）
-    }
+- Request  
+
+    ---
+        {
+            "Name":[String],  // メンバー名配列（必須）
+            "NumberInGroup":int  // １グループの人数を固定にする場合指定（任意）
+        }
     ---
 
-- Response
-    Status Code: 200     
-    ---JSON
+- Response  
+    Status Code: 200  
+    ---
         {
             "Groups":
             [
