@@ -13,23 +13,81 @@
 ### [GET] /amida
 - Request  
 
-    ---
-        {
-            "Name":[String],  // メンバー名配列（必須）
-            "NumberInGroup":int  // １グループの人数を固定にする場合指定（任意）
-        }
-    ---
+    ```
+    {
+        "Name":[String],  // メンバー名配列（必須）
+        "NumberInGroup":int  // １グループの人数を固定にする場合指定（任意）
+    }
+    ```
 
 - Response  
     Status Code: 200  
-    ---
+    ```
+    {
+        "Groups":
+        [
+            {
+                "GroupName": String,    // グループ名
+                "GroupMember":[String]  // メンバー名リスト
+            }
+        ]
+    }
+    ```
+
+- Ex-1
+    - Request
+        ```
+        {
+            "Name":["A","B","C","D","E","F","G"],
+            "NumberInGroup":0
+        }
+        ```
+
+    - Response  
+        Status Code : 200
+        ```
         {
             "Groups":
             [
                 {
-                    "GroupName": String,    // グループ名
-                    "GroupMember":[String]  // メンバー名リスト
+                    "GroupName": "Group-1",
+                    "GroupMember":["C","D","F","G"],
+                },
+                {
+                    "GroupName": "Group-2",
+                    "GroupMember":["A","B","E"]
                 }
             ]
         }
-    ---
+        ```
+
+- Ex-2
+    - Request
+        ```
+        {
+            "Name":["A","B","C","D","E","F","G"],
+            "NumberInGroup":3
+        }
+        ```
+
+    - Response  
+        Status Code : 200
+        ```
+        {
+            "Groups":
+            [
+                {
+                    "GroupName": "Group-1",
+                    "GroupMember":["C","D","F"]
+                },
+                {
+                    "GroupName": "Group-2",
+                    "GroupMember":["A","B","E"]
+                },
+                {
+                    "GroupName": "MuraHachibu",
+                    "GroupMember":["G"]
+                }
+            ]
+        }
+        ```
