@@ -2,7 +2,7 @@
 ３人または４人のグループ分けを行うLINEボット
 
 ## 要件
-- LINEボットとして動作する
+- ~~LINE~~ Slackボットとして動作する
 - メンバーをグループに分ける
 - １グループは４人または３人
 - メンバーの最小は３人
@@ -10,12 +10,15 @@
 - グループの人数を固定にすることも可能（１０人を４，４，余り２に分ける）
 
 ## API
+
+memo: レスポンスはSlackの戻り形式に合わせる必要あり。
+
 ### [GET] /amida
 - Request  
 
     ```
     {
-        "Name":[String],  // メンバー名配列（必須）
+        "Names":[String],  // メンバー名配列（必須）
         "NumberInGroup":int  // １グループの人数を固定にする場合指定（任意）
     }
     ```
@@ -28,7 +31,7 @@
         [
             {
                 "GroupName": String,    // グループ名
-                "GroupMember":[String]  // メンバー名リスト
+                "GroupMembers":[String]  // メンバー名リスト
             }
         ]
     }
@@ -38,7 +41,7 @@
     - Request
         ```
         {
-            "Name":["A","B","C","D","E","F","G"],
+            "Names":["A","B","C","D","E","F","G"],
             "NumberInGroup":0
         }
         ```
@@ -51,11 +54,11 @@
             [
                 {
                     "GroupName": "Group-1",
-                    "GroupMember":["C","D","F","G"],
+                    "GroupMembers":["C","D","F","G"],
                 },
                 {
                     "GroupName": "Group-2",
-                    "GroupMember":["A","B","E"]
+                    "GroupMembers":["A","B","E"]
                 }
             ]
         }
@@ -65,7 +68,7 @@
     - Request
         ```
         {
-            "Name":["A","B","C","D","E","F","G"],
+            "Names":["A","B","C","D","E","F","G"],
             "NumberInGroup":3
         }
         ```
@@ -78,15 +81,15 @@
             [
                 {
                     "GroupName": "Group-1",
-                    "GroupMember":["C","D","F"]
+                    "GroupMembers":["C","D","F"]
                 },
                 {
                     "GroupName": "Group-2",
-                    "GroupMember":["A","B","E"]
+                    "GroupMembers":["A","B","E"]
                 },
                 {
                     "GroupName": "MuraHachibu",
-                    "GroupMember":["G"]
+                    "GroupMembers":["G"]
                 }
             ]
         }
