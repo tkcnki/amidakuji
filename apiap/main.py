@@ -22,14 +22,14 @@ async def amida(key, param: Param):
 
     len_names = len(param.Names)
 
-    if len_names < Param.NumberInGroup:
+    if len_names < 3 or len_names < param.NumberInGroup:
         return {"message": "Ooops"}
 
     class Result(BaseModel):
         GroupName: str
         GroupMembers: List[str] = []
 
-    if Param.NumberInGroup < 3 and 3 <= len_names <= 4 :
+    if param.NumberInGroup < 3 and 3 <= len_names <= 4 :
         return Result(GroupName = Group_name_list[0], GroupMembers = param.Names)
 
     shuffle(param.Names)
